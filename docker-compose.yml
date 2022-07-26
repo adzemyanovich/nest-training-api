@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  dev:
+    container_name: nest_trainig_api_dev
+    image: nest-training-api-dev
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: npm run start:debug
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  prod:
+    container_name: nest_trainig_api_prod
+    image: nest-training-api-prod
+    build:
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
